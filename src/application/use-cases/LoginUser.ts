@@ -4,7 +4,7 @@ import { ByCryptHasher } from "../../infrastructure/auth/BycryptHasher";
 import { JwtService } from "../../infrastructure/auth/JwtService";
 
 
-class LoginUsers{
+export class LoginUsers{
     constructor(
         private users: UserRepository,
         private hasher: ByCryptHasher,

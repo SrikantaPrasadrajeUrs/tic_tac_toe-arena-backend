@@ -4,7 +4,7 @@ import { UserRepository } from "../../domain/repositories/UserRepository";
 import { ByCryptHasher } from "../../infrastructure/auth/BycryptHasher";
 
 
-class RegisterUser{
+export class RegisterUser{
     constructor(
         private users: UserRepository,
         private hasher: ByCryptHasher
