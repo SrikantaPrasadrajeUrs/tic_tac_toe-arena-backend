@@ -4,4 +4,5 @@ export class User{
         public readonly email: string,
         public readonly passwordHash:string
     ){}
+    
 }

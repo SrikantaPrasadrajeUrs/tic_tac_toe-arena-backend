@@ -16,7 +16,7 @@ export class RegisterUser{
             throw new Error("User already exists");
         }
 
-        const hash = this.hasher.hash(password);
-        return this.users.create(new User(randomUUID(), email, password));
+        const hash = await this.hasher.hash(password);
+        return this.users.create(new User(randomUUID(), email, hash));
     }
 }
