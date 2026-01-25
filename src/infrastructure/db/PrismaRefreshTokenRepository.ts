@@ -23,9 +23,10 @@ export class PrismaRefreshTokenRepository implements RefreshTokenRepository {
         });
     }
 
-    async findValid(token: string): Promise<RefreshToken | null> {
+    async findValid(id: string, token: string): Promise<RefreshToken | null> {
         const r = await prisma.refreshToken.findFirst({
             where: {
+                id: id,
                 token: this.hasher.hash(token),
                 revoked: false,
                 expiresAt: { gt: new Date() }
@@ -34,7 +35,7 @@ export class PrismaRefreshTokenRepository implements RefreshTokenRepository {
         return r? new RefreshToken(r.id, r.revoked, r.userId, r.expiresAt): null;
     }
 
-    async revoke(token: string): Promise<void> {
-        await prisma.refreshToken.update({ where: { token: this.hasher.hash(token) }, data: { revoked: true } });
+    async revoke(id: string): Promise<void> {
+        await prisma.refreshToken.update({ where: { id: id }, data: { revoked: true } });
     }
 }

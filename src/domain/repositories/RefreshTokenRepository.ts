@@ -1,4 +1,5 @@
 import { ByCryptHasher } from "../../infrastructure/auth/BycryptHasher";
+import { RefreshTokenHasher } from "../../infrastructure/auth/RefreshTokenHasher";
 import { RefreshToken } from "../entities/RefreshToken";
 
 export interface CreateRefreshToken {
@@ -14,8 +15,8 @@ export interface RefreshTokenRepository {
     userId: string,
     token: string,
     expiresAt: Date
-  }, hasher: ByCryptHasher): Promise<void>;
-  findValid(token: string): Promise<RefreshToken | null>;
+  }, hasher: RefreshTokenHasher): Promise<void>;
+  findValid(id: string, token: string): Promise<RefreshToken | null>;
   revoke(token: string): Promise<void>;
 }
 

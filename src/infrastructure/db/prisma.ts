@@ -12,4 +12,5 @@ const pool = new Pool({ connectionString });
 
 // Create the adapter
 const adapter = new PrismaPg({connectionString});
-export const prisma = new PrismaClient({adapter, log: ["query"]});
+const env = process.env.NODE_ENV;
+export const prisma = new PrismaClient({adapter, log: env == "production"? []: ["query"]});

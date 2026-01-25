@@ -12,7 +12,11 @@ export class JwtService{
         return jwt.sign(payload, process.env.JWT_REFRESH_SECRET!, { expiresIn: REFRESH_TTL })
     }
 
-    verify(token: string):any{
+    verifyAccessToken(token: string):any{
         return jwt.verify(token, process.env.JWT_SECRET!);
+    }
+
+    verifyRefreshToken(token: string):any{
+        return jwt.verify(token, process.env.JWT_REFRESH_SECRET!);
     }
 }
