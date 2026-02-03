@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+import cors from "cors";
+
 dotenv.config();
 
 import express from 'express';
@@ -9,6 +11,9 @@ import { connectDB } from "./infrastructure/db/connect";
 
 
 const app = express();
+app.use(cors({
+    origin: "*"
+}))
 app.use(express.json());
 app.use("/api", routes);
 app.use(errorHandler);
